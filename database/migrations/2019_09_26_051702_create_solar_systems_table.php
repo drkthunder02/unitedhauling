@@ -17,6 +17,7 @@ class CreateSolarSystemsTable extends Migration
             Schema::create('solar_systems', function (Blueprint $table) {
                 $table->string('name');
                 $table->string('solar_system_id')->unique();
+                $table->float('security_status', 3, 2);
             });
         }
     }

@@ -25,7 +25,11 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     </head>
     <body>
-        @include('layouts.navbar')
+        @if(Auth::check())
+            @extends('layouts.navbars.loggedin')
+        @else
+            @extends('layouts.navbars.loggedout')
+        @endif
         <div class="container">
             @include('inc.messages')
         </div>
