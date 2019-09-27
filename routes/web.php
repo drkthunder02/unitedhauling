@@ -11,13 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    if(Auth::check()) {
-        return redirect('/dashboard');
-    }
-    return redirect('/display');
-})->name('/');
-
 Route::group(['middleware' => ['auth']], function(){
     /**
      * Dashboard Controller Display pages
@@ -37,6 +30,6 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 /**
  * Unsecure Display pages
  */
-Route::get('/display', 'Hauling\HaulingController@displayForm')->name('display');
-Route::post('/display', 'Hauling\HaulingController@displayFormResults');
+Route::get('/', 'Hauling\HaulingController@displayForm')->name('display');
+Route::post('/', 'Hauling\HaulingController@displayFormResults');
 Route::get('/display/quotes', 'Hauling\HaulingController@displayQuotes')->name('quotes');
