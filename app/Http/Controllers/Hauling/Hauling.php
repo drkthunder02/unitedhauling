@@ -32,13 +32,33 @@ class Hauling extends Controller
         $this->validate($request, [
             'name1' => 'required',
             'name2' => 'required',
+            'collateral' => 'required',
+            'size' => 'required',
         ]);
+
+        $size = $request->size;
+        $collateral = $request->collateral;
+        $time = '1 week';
+        $duration = '3 days';
 
         $hHelper = new HaulingHelper;
 
         $jumps = $hHelper->JumpsBetweenSystems($request->name1, $request->name2);
 
-        return  view('hauling.display.results')->with('jumps', $jumps);
+        if($size > 0 && $size <= 57500) {
+            $cost = $jumps * 750000;
+        } else if($size > 57500 && $size < 800000) {
+            $cost = $jumps * 1000000;
+        } else {
+            $cost = -1;
+        }
+
+        return  view('hauling.display.results')->with('jumps', $jumps)
+                                               ->with('cost', $cost)
+                                               ->with('collateral', $collateral)
+                                               ->with('size', $size)
+                                               ->with('time', $time)
+                                               ->with('duration', $duration);
     }
 
     /**
