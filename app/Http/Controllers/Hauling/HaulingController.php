@@ -11,7 +11,7 @@ use App\Library\Hauling\HaulingHelper;
 
 //Models
 
-class Hauling extends Controller
+class HaulingController extends Controller
 {
     public function __construct() {
         $this->middleware('auth');
