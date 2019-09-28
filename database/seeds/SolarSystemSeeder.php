@@ -34,7 +34,7 @@ class SolarSystemSeeder extends Seeder
 
             }
             
-            $count = SolarSystem::where(['system_id' => $system])->count();
+            $count = SolarSystem::where(['solar_system_id' => $system])->count();
             if($count == 0) {
                 SolarSystem::insert([
                     'name' => $info->name,
