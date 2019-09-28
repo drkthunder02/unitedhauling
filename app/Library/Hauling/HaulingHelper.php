@@ -26,8 +26,8 @@ class HaulingHelper {
 
     public function JumpsBetweenSystems($name1, $name2) {
         //Get the systems from the database
-        $system1 = SolarSystem::where(['name' => $name1])->get();
-        $system2 = SolarSystem::where(['name' => $name2])->get();
+        $system1 = SolarSystem::where(['name' => $name1])->first();
+        $system2 = SolarSystem::where(['name' => $name2])->first();
 
         try {
             $route = $this->esi->invoke('get', '/route/{origin}/{destination}/', [
