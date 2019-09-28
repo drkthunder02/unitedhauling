@@ -27,6 +27,10 @@ Route::group(['middleware' => ['auth']], function(){
     
 });
 
+Route::group(['middleware' => ['guest']], function() {
+
+});
+
 /**
  * Login Display pages
  */
