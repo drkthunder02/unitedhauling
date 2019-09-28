@@ -22,7 +22,7 @@ class HaulingController extends Controller
      * Controller function to display form
      */
     public function displayForm() {
-        return view('hauling.display.display');
+        return view('hauling.display.form');
     }
 
     /**
