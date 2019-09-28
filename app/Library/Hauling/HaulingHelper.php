@@ -31,7 +31,7 @@ class HaulingHelper {
 
         try {
             $route = $this->esi->invoke('get', '/route/{origin}/{destination}/', [
-                'route' => $system1->solar_system_id,
+                'origin' => $system1->solar_system_id,
                 'destination' => $system2->solar_system_id,
             ])->setQueryString([
                 'flag' => 'secure',
