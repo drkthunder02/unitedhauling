@@ -16,6 +16,8 @@ class Authenticate extends Middleware
     {
         if($this->auth->check()) {
             return route('/');
+        } else {
+            return route('/');
         }
     }
 }
