@@ -20,5 +20,6 @@ class SolarSystem extends Model
     protected $fillable = [
         'name',
         'solar_system_id',
+        'security_status',
     ];
 }

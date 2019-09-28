@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Library\Hauling\HaulingHelper;
 
 //Models
+use App\Models\Lookups\SolarSystem;
 
 class HaulingController extends Controller
 {
@@ -29,6 +30,7 @@ class HaulingController extends Controller
      * Controller function to display form results
      */
     public function displayFormResults(Request $request) {
+        //Validate the request
         $this->validate($request, [
             'pickup' => 'required',
             'destination' => 'required',
@@ -36,6 +38,10 @@ class HaulingController extends Controller
             'size' => 'required',
         ]);
 
+        //Declare the class helper
+        $hHelper = new HaulingHelper;
+
+        //Declare some variables we will need
         $size = $request->size;
         $collateral = $request->collateral;
         $time = '1 week';
@@ -43,12 +49,20 @@ class HaulingController extends Controller
         $pickup = $request->pickup;
         $destination = $request->destination;
 
-        $hHelper = new HaulingHelper;
+        //Determine if both systems are in high sec
+        $system1 = SolarSystem::where(['name' => $pickup])->first();
+        $system2 = SolarSystem::where(['name' => $destination])->first();
 
+        if($system1->security_status < 0.5 || $system2->security_status < 0.5) {
+            return redirect('/')->with('error', 'Both systems must be in high sec.');
+        }
+
+        //Calculate the jumps needed
         $jumps = $hHelper->JumpsBetweenSystems($pickup, $destination);
 
+        //Calculate the cost based on jumps multiplied by the fee.
         if($size > 0 && $size <= 8000) {
-            $cost = $jumps* 600000;
+            $cost = $jumps * 600000;
         } else if($size > 8000 && $size <= 57500) {
             $cost = $jumps * 750000;
         } else if($size > 57500 && $size <= 800000) {
