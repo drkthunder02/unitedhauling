@@ -30,12 +30,12 @@ class HaulingHelper {
         $system2 = SolarSystem::where(['name' => $name2])->first();
 
         try {
-            $route = $this->esi->invoke('get', '/route/{origin}/{destination}/', [
+            $route = $this->esi->setQueryString([
+                'flag' => 'secure',
+            ])->invoke('get', '/route/{origin}/{destination}/', [
                 'origin' => $system1->solar_system_id,
                 'destination' => $system2->solar_system_id,
-            ])->setQueryString([
-                'flag' => 'secure',
-            ])->invoke();
+            ]);
         } catch(RequestFailedException $e) {
             return -1;
         }
