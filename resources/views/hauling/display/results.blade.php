@@ -18,11 +18,11 @@
                 </tr>
                 <tr>
                     <th>Volume</th>
-                    <td>{{ $size }}</td>
+                    <td>{{ number_format($size, 0, ".", ",") }}</td>
                 </tr>
                 <tr>
                     <th>Collateral</th>
-                    <td>{{ $collateral }} ISK</td>
+                    <td>{{ number_format($collateral, 2, ".", ",") }} ISK</td>
                 </tr>
             </table>
         </div>
@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <th>Price</th>
-                    <td>{{ $cost }}</td>
+                    <td>{{ number_format($cost, 2, ".", ",") }}</td>
                 </tr>
                 <tr>
                     <th>Container Policy</th>
