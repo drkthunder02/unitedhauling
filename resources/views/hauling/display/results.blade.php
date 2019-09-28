@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <th>Price</th>
-                    <td>{{ $price }}</td>
+                    <td>{{ $cost }}</td>
                 </tr>
                 <tr>
                     <th>Container Policy</th>
