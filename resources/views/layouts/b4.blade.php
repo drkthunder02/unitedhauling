@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     </head>
     <body>
-        @if(Auth::check())
+        @if($this->auth()->check())
             @extends('layouts.navbars.loggedin')
         @else
             @extends('layouts.navbars.loggedout')
