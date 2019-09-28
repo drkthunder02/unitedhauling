@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             Schema::create('users', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name');
-                $table->integer('character_id')->unsigned()->unique();
+                $table->unsignedInteger('character_id')->unique();
                 $table->string('avatar');
                 $table->string('access_token')->nullable();
                 $table->string('refresh_token')->nullable();
@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
         if(!Schema::hasTable('user_roles')) {
             Schema::create('user_roles', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('character_id')->unsigned();
+                $table->unsignedInteger('character_id');
                 $table->foreign('character_id')->references('character_id')->on('users');
                 $table->string('role')->default('None');
                 $table->timestamps();
@@ -42,7 +42,7 @@ class CreateUsersTable extends Migration
         if(!Schema::hasTable('esi_tokens')) {
             Schema::create('esi_tokens', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('character_id')->unique();
+                $table->unsignedInteger('character_id')->unique();
                 $table->foreign('character_id')->references('character_id')->on('users');
                 $table->string('access_token');
                 $table->string('refresh_token');
@@ -54,7 +54,7 @@ class CreateUsersTable extends Migration
         if(!Schema::hasTable('esi_scopes')) {
             Schema::create('esi_scopes', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('character_id');
+                $table->unsignedInteger('character_id');
                 $table->foreign('character_id')->references('character_id')->on('users');
                 $table->string('scope');
                 $table->timestamps();
@@ -64,7 +64,7 @@ class CreateUsersTable extends Migration
         if(!Schema::hasTable('user_permissions')) {
             Schema::create('user_permissions', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('character_id')->unisnged();
+                $table->unsignedInteger('character_id');
                 $table->foreign('character_id')->references('character_id')->on('users');
                 $table->string('permission');
                 $table->timestamps();
@@ -85,6 +85,11 @@ class CreateUsersTable extends Migration
                 $table->string('description');
                 $table->timestamps();
             });
+
+            DB::table('available_user_roles')->insert([
+                'role' => 'None',
+                'description' => 'No roles whatsoever on the site.',
+            ]);
 
             DB::table('available_user_roles')->insert([
                 'role' => 'Guest',

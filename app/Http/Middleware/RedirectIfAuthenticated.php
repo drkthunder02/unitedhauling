@@ -4,9 +4,18 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Socialite;
+use DB;
+
+use App\Models\User\User;
+use Seat\Eseye\Cache\NullCache;
+use Seat\Eseye\Configuration;
+use Seat\Eseye\Containers\EsiAuthentication;
+use Seat\Eseye\Eseye;
 
 class RedirectIfAuthenticated
 {
+    
     /**
      * Handle an incoming request.
      *
@@ -18,9 +27,8 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            return redirect()->to('/dashboard');
         }
-
         return $next($request);
     }
 }
