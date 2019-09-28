@@ -15,14 +15,14 @@ use App\Library\Hauling\HaulingHelper;
 class HaulingController extends Controller
 {
     public function __construct() {
-        $this->middleware('role:Guest');
+        //
     }
 
     /**
      * Controller function to display form
      */
     public function displayForm() {
-        return view('hauling.display.test');
+        return view('hauling.display.display');
     }
 
     /**
