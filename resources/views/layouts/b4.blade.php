@@ -25,10 +25,10 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     </head>
     <body>
-        @if($this->auth()->check())
-            @extends('layouts.navbars.loggedin')
+        @if(Auth::check())
+            @include('layouts.navbars.loggedin')
         @else
-            @extends('layouts.navbars.loggedout')
+            @include('layouts.navbars.loggedout')
         @endif
         <div class="container">
             @include('inc.messages')
