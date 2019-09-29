@@ -1,50 +1,32 @@
-<?php
-
-namespace App\Http\Controllers\Dashboard;
-
-//Internal Libraries
-use App\Http\Controllers\Controller;
-use Auth;
-use DB;
-use Log;
-
-//Models
-use App\Models\Esi\EsiScope;
-use App\Models\Esi\EsiToken;
-use App\Models\User\UserPermission;
-use App\Models\User\UserRole;
-
-class DashboardController extends Controller
-{
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('role:Guest');
-    }
-
-    /**
-     * Create dashboard where user logs in
-     * 
-     * @return void 
-     */
-    public function index() {
-        return view('dashboard.dashboard');
-    }
-
-    /**
-     * Create profile for user
-     * 
-     * @return void
-     */
-    public function profile() {
-        return view('dashboard.profile');
-    }
-
-}
-
-?>
+@extends('layouts.b4')
+@section('content')
+<br>
+<div class="container">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <th>Pickup System</th>
+            <th>Destination System</th>
+            <th>Type</th>
+            <th>Volume</th>
+            <th>Date Expired</th>
+            <th>Collateral</th>
+            <th>Reward</th>
+            <th>Availability</th>
+        </thead>
+        <tbody>
+            @foreach($contracts as $contract)
+            <tr>
+                <td>{{ $contract['pickup'] }}</td>
+                <td>{{ $contract['destination'] }}</td>
+                <td>{{ $contract['type'] }}</td>
+                <td>{{ $contract['volume'] }}</td>
+                <td>{{ $contract['expired'] }}</td>
+                <td>{{ $contract['collateral'] }}</td>
+                <td>{{ $contract['reward'] }}</td>
+                <td>{{ $contract['availability'] }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+@endsection

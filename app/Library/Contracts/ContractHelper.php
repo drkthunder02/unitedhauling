@@ -38,12 +38,18 @@ class ContractHelper {
         $this->esi = $esiHelper->SetupEsiAuthentication($token);
     }
 
-    public function GetNumOfContracts() {
-        
-    }
+    public function GetContracts($corpId) {
+        $contracts = null;
 
-    public function GetContractDetails($contract) {
+        try {
+            $contracts = $this->esi->invoke('get', '/corporations/{corporation_id}/contracts/', [
+                'corporation_id' => $corpId,
+            ]);
+        } catch(RequestFailedException $e) {
+            return null;
+        }
 
+        return $contracts;
     }
 }
 
