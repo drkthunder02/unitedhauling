@@ -12,6 +12,7 @@
         "barryvdh/laravel-debugbar": "^3.2",
         "eveseat/eseye": "^1.1",
         "fideloper/proxy": "^4.0",
+        "khill/lavacharts": "^3.1",
         "laravel/framework": "^6.0",
         "laravel/horizon": "^3.3",
         "laravel/socialite": "^4.2",
