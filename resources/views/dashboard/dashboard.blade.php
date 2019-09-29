@@ -7,7 +7,7 @@
             <h2>Total Contracts Available</h2>
         </div>
         <div class="card-body">
-            
+            {{ $num }}
         </div>
     </div>
 </div>
