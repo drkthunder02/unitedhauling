@@ -2,6 +2,17 @@
 @section('content')
 <br>
 <div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Total Contracts Available</h2>
+        </div>
+        <div class="card-body">
+            
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
     <table class="table table-striped table-bordered">
         <thead>
             <th>Pickup System</th>
