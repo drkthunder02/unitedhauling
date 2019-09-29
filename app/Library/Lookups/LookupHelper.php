@@ -18,6 +18,7 @@ use App\Library\Esi\Esi;
 use App\Models\Lookups\CharacterLookup;
 use App\Models\Lookups\CorporationLookup;
 use App\Models\Lookups\AllianceLookup;
+use App\Models\Lookups\SolarSystem;
 
 class NewLookupHelper {
     //Variables
@@ -690,6 +691,16 @@ class NewLookupHelper {
                     ]);
                 }
             }
+        }
+    }
+
+    public function GetSolarSystemName($systemId) {
+        $count = SolarSystem::where(['solar_system_id' => $systemId])->count();
+        if($count != 0) {
+            $system = SolarSystem::where(['solar_system_id' => $systemId])->first();
+            return $system->name;
+        } else {
+            return 'N/A';
         }
     }
 }
