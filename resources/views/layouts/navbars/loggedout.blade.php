@@ -8,7 +8,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdoownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hauling</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                        <a class="dropdown-item" href="/display">Hauling Form</a>
+                        <a class="dropdown-item" href="/">Hauling Form</a>
                     </div>
                 </li>
             </ul>

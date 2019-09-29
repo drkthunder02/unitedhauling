@@ -68,7 +68,7 @@ class HaulingController extends Controller
         } else if($size > 57500 && $size <= 800000) {
             $cost = $jumps * 1000000;
         } else {
-            $cost = -1;
+            return redirect('/')->with('error', 'Size cannot be greater than 800k m3.');
         }
 
         return  view('hauling.display.results')->with('jumps', $jumps)
