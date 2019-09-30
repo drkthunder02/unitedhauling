@@ -52,6 +52,8 @@ class DashboardController extends Controller
     }
 
     public function profile() {
-        return redirect('/');
+        $user = User::where(['character_id' => $this->user()->getId()])->first();
+
+        return view('dashboard.profile')->with('user', $user);
     }
 }
