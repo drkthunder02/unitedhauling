@@ -166,7 +166,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Khill\Lavacharts\Laravel\Lavacharts\ServiceProvider::class,
+        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
         App\Providers\HorizonServiceProvider::class,
 
         /*
