@@ -18,7 +18,7 @@ class EsiScopeController extends Controller
     }
     public function displayScopes() {
         //Get the ESI Scopes for the user
-        $scopes = DB::table('EsiScopes')->where('character_id', Auth::user()->character_id)->get();
+        $scopes = EsiScope::where(['character_id' => Auth::user()->character_id])->get();
         return view('scopes.select')->with('scopes', $scopes);
     }
     public function redirectToProvider(Request $request) {
