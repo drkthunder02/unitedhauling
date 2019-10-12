@@ -212,7 +212,7 @@ class LoginController extends Controller
             'character_id' => $eve_user->getId(),
             'expires_in' => $eve_user->expiresIn,
             'access_token' => $eve_user->token,
-            'user_type' => $this->GetAccountType(null, $eve_user->id),
+            'user_type' => $this->GetRole(null, $eve_user->id),
         ]);
 
         return $user;
@@ -295,5 +295,4 @@ class LoginController extends Controller
 
         return $role;
     }
-
 }
