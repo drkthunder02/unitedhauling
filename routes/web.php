@@ -37,3 +37,9 @@ Route::group(['middleware' => ['guest']], function() {
 Route::get('/login', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('/callback', 'Auth\LoginController@handleProviderCallback')->name('callback');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
+/**
+ * Scopes Controller display pages
+ */
+Route::get('/scopes/select', 'Auth\EsiScopeController@displayScopes');
+Route::post('redirectToProvider', 'Auth\EsiScopeController@redirectToProvider');
