@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth']], function(){
     /**
      * Dashboard Controller Display pages
      */
-    //Route::get('/dashboard', 'Dashboard\DashboardController@index');
+    Route::get('/dashboard', 'Dashboard\DashboardController@index');
     //Route::get('/profile', 'Dashboard\DashboardController@profile');
     
 });
