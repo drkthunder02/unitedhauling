@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class StationLookup extends Model
 {
     //Table Name
-    public $table = 'station_lookups';
+    public $table = 'station_lookup';
 
     //Timestamps
     public $timestamps = true;
