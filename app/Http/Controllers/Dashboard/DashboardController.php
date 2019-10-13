@@ -34,9 +34,21 @@ class DashboardController extends Controller
                 $startStation = $lookupHelper->GetStationDetails($con->start_location_id);
                 $endStation = $lookupHelper->GetStationDetails($con->end_location_id);
 
-                $startSystem = $lookupHelper->GetSolarSystemName($startStation->system_id);
-                $endSystem = $lookupHelper->GetSolarSystemName($endStation->system_id);
+                dd($endStation);
 
+                if(isset($startStation->system_id)) {
+                    $startSystem = $lookupHelper->GetSolarSystemName($startStation->system_id);
+                } else {
+                    $startSystem = 'N/A';
+                }
+
+                if(isset($endStation->system_id)) {
+                    $endSystem = $lookupHelper->GetSolarSystemName($endStation->system_id);
+                } else {
+                    $endStation = 'N/A';
+                }
+               
+                //Compile the final array
                 $final = [
                     'pickup' => $startSystem,
                     'destination' => $endSystem,
