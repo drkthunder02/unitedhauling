@@ -770,15 +770,15 @@ class LookupHelper {
         if(isset($response->owner)) {
             $station->owner = $response->owner;
         }
-        $station->position_x = $response->position['x'];
-        $station->position_y = $response->position['y'];
-        $station->position_z = $response->position['z'];
+        $station->position_x = $response->position->x;
+        $station->position_y = $response->position->y;
+        $station->position_z = $response->position->z;
         if(isset($response->race_id)) {
             $station->race_id = $response->race_id;
         }
         $station->reprocessing_efficiency = $response->reprocessing_efficiency;
         $station->reprocessing_stations_take = $response->reprocessing_stations_take;
-        $station->services = $response->services;
+        $station->services = implode(",", $response-services);        
         $station->station_id = $response->station_id;
         $station->system_id = $response->system_id;
         $station->type_id = $response->type_id;
