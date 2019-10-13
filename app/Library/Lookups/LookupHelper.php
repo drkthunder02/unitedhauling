@@ -19,6 +19,7 @@ use App\Models\Lookups\CharacterLookup;
 use App\Models\Lookups\CorporationLookup;
 use App\Models\Lookups\AllianceLookup;
 use App\Models\Lookups\SolarSystem;
+use App\Models\Lookups\Station;
 
 class LookupHelper {
     //Variables
@@ -702,6 +703,86 @@ class LookupHelper {
         } else {
             return 'N/A';
         }
+    }
+
+    public function GetStationDetails($stationId) {
+        //Check if the station is stored in the database
+        $station = $this->LookupStation($stationId, null);
+
+        //If the station is null, then we didn't find it, and we run the esi to find it.
+        if($station != null) {
+            return $station;
+        } else {
+            try {
+                $station = $this->esi->invoke('get', '/universe/stations/{station_id}/', [
+                    'station_id' => $stationId,
+                ]);
+            } catch(RequestFailedException $e) {
+                Log::warning('Failed to get station details from /universe/stations/{station_id}/ in lookup helper.');
+                return null;
+            }
+
+            if(isset($station->type_id)) {
+                //Store the station details for the lookup table
+                $this->StoreStationLookup($station);
+                //Return the details of the station
+                return $station;
+            } else {
+                //If we didn't get any details then return null
+                return null;
+            }
+            
+        }
+    }
+
+    private function LookupStation($id = null, $name = null) {
+        //if both the id and name are null, then there is nothing to look up
+        if($id == null && $name == null) {
+            return null;
+        }
+
+        //Run through the checks to try to find the station either by id first, then the name
+        if($id != null) {
+            $count = StationLookup::where(['station_id' => $id])->count();
+            if($count > 0) {
+                $station = StationLookup::where(['station_id' => $id])->get();
+            } else {
+                return null;
+            }
+        } else if( $name != null) {
+            $count = StationLookup::where(['name' => $name])->count();
+            if($coutn > 0) {
+                $station = StationLookup::whre(['name' => $name])->get();
+            } else {
+                return null;
+            }
+        }
+
+        //Return the details of the station if they were found
+        return $station;
+    }
+
+    private function SaveStation($response) {
+        $station = new StationLookup;
+        $station->max_dockable_ship_volume = $response->max_dockable_ship_volume;
+        $station->name = $response->name;
+        $station->office_rental_cost = $response->office_rental_cost;
+        if(isset($response->owner)) {
+            $station->owner = $response->owner;
+        }
+        $station->position_x = $response->position->x;
+        $station->position_y = $response->position->y;
+        $station->position_z = $response->position->z;
+        if(isset($response->race_id)) {
+            $station->race_id = $response->race_id;
+        }
+        $station->reprocessing_efficiency = $response->reprocessing_efficiency;
+        $station->reprocessing_stations_take = $response->reprocessing_stations_take;
+        $station->services = $response->services;
+        $station->station_id = $response->station_id;
+        $station->system_id = $response->system_id;
+        $station->type_id = $response->type_id;
+        $station->save();
     }
 }
 

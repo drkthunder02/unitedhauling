@@ -30,9 +30,12 @@ class DashboardController extends Controller
 
         foreach($tempContracts as $con) {
             if($con->status != 'finished') {
-                dd($con->start_location_id);
-                $startSystem = $lookupHelper->GetSolarSystemName($con->start_location_id);
-                $endSystem = $lookupHelper->GetSolarSystemName($con->end_location_id);
+
+                $startStation = $lookupHelper->GetStationDetails($con->start_location_id);
+                $endStation = $lookupHelper->GetStationDetails($con->end_location_id);
+
+                $startSystem = $lookupHelper->GetSolarSystemName($startStation->system_id);
+                $endSystem = $lookupHelper->GetSolarSystemName($endStation->system_id);
 
                 $final = [
                     'pickup' => $startSystem,
