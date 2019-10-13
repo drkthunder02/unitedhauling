@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
                 $table->integer('inserted_at')->default(0);
                 $table->integer('expires_in')->default(0);
                 $table->string('owner_hash');
+                $table->string('remember_token')->nullable();
                 $table->string('user_type')->default('Guest');
                 $table->timestamps();
             });
