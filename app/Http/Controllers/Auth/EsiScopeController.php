@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+//Internal Library
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use Socialite;
 use Auth;
 
+//Models
 use App\Models\User\User;
+use App\Models\Esi\EsiScope;
+use App\Models\Esi\EsiToken;
 
 class EsiScopeController extends Controller
 {
