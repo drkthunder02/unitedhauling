@@ -20,7 +20,7 @@ use App\Models\Lookups\CorporationLookup;
 use App\Models\Lookups\AllianceLookup;
 use App\Models\Lookups\SolarSystem;
 
-class NewLookupHelper {
+class LookupHelper {
     //Variables
     private $esi;
 
