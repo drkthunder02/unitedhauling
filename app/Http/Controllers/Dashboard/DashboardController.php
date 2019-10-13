@@ -28,6 +28,8 @@ class DashboardController extends Controller
         //information such as pickup and destination, jumps, and profit margin.
         $tempContracts = $contractHelper->GetContracts(98615428);
 
+        dd($tempContracts);
+
         foreach($tempContracts as $con) {
             $startSystem = $lookupHelper->GetSolarSystemName($con->start_location_id);
             $endSystem = $lookupHelper->GetSolarSystemName($con->end_location_id);
