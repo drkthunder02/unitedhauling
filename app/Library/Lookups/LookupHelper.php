@@ -778,7 +778,7 @@ class LookupHelper {
         }
         $station->reprocessing_efficiency = $response->reprocessing_efficiency;
         $station->reprocessing_stations_take = $response->reprocessing_stations_take;
-        $station->services = implode(",", $response-services);        
+        $station->services = implode(",", $response->services);        
         $station->station_id = $response->station_id;
         $station->system_id = $response->system_id;
         $station->type_id = $response->type_id;
