@@ -12,6 +12,7 @@
     </div>
 </div>
 <br>
+@if($num > 0)
 <div class="container">
     <table class="table table-striped table-bordered">
         <thead>
@@ -40,4 +41,5 @@
         </tbody>
     </table>
 </div>
+@endif
 @endsection

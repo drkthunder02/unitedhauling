@@ -23,6 +23,7 @@ class DashboardController extends Controller
 
         //Declare array variable
         $contracts = array();
+        $num = 0;
 
         //Get the current amount of contracts availabe to the corporation for displaying on the dashboard with the relevant
         //information such as pickup and destination, jumps, and profit margin.
@@ -61,10 +62,9 @@ class DashboardController extends Controller
                 ];
 
                 array_push($contracts, $final);
+                $num++;
             }
         }
-
-        $num = sizeof($contracts);
 
         return view('dashboard.dashboard')->with('contracts', $contracts)
                                           ->with('num', $num);
