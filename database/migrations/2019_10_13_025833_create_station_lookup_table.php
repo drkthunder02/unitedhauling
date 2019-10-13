@@ -26,7 +26,7 @@ class CreateStationLookupTable extends Migration
                 $table->unsignedBigInteger('race_id')->nullable();
                 $table->decimal('reprocessing_efficiency');
                 $table->decimal('reprocessing_stations_take');
-                $table->string('services');
+                $table->text('services');
                 $table->unsignedBigInteger('station_id');
                 $table->unsignedBigInteger('system_id');
                 $table->unsignedBigInteger('type_id');
