@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Hauling;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Auth;
 
 //Libraries
 use App\Library\Hauling\HaulingHelper;
