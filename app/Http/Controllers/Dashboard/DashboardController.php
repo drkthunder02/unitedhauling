@@ -28,24 +28,25 @@ class DashboardController extends Controller
         //information such as pickup and destination, jumps, and profit margin.
         $tempContracts = $contractHelper->GetContracts(98615428);
 
-        dd($tempContracts);
-
         foreach($tempContracts as $con) {
-            $startSystem = $lookupHelper->GetSolarSystemName($con->start_location_id);
-            $endSystem = $lookupHelper->GetSolarSystemName($con->end_location_id);
+            if($con->status != 'finished') {
+                dd($con->start_location_id);
+                $startSystem = $lookupHelper->GetSolarSystemName($con->start_location_id);
+                $endSystem = $lookupHelper->GetSolarSystemName($con->end_location_id);
 
-            $final = [
-                'pickup' => $startSystem,
-                'destination' => $endSystem,
-                'type' => $con->type,
-                'volume' => $con->volume,
-                'expired' => $con->date_expired,
-                'collateral' => $con->collateral,
-                'reward' => $con->reward,
-                'availability' => $con->availability,
-            ];
+                $final = [
+                    'pickup' => $startSystem,
+                    'destination' => $endSystem,
+                    'type' => $con->type,
+                    'volume' => $con->volume,
+                    'expired' => $con->date_expired,
+                    'collateral' => $con->collateral,
+                    'reward' => $con->reward,
+                    'availability' => $con->availability,
+                ];
 
-            array_push($contracts, $final);
+                array_push($contracts, $final);
+            }
         }
 
         $num = sizeof($contracts);
