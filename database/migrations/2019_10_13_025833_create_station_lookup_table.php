@@ -16,20 +16,20 @@ class CreateStationLookupTable extends Migration
         if(!Schema::hasTable('station_lookup')) {
             Schema::create('station_lookup', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->float('max_dockable_ship_volume');
+                $table->unsignedBigInteger('max_dockable_ship_volume');
                 $table->string('name');
-                $table->float('office_rental_cost');
+                $table->bigInteger('office_rental_cost');
                 $table->bigInteger('owner')->nullable();
-                $table->double('position_x');
-                $table->double('position_y');
-                $table->double('position_z');
-                $table->bigInteger('race_id')->nullable();
-                $table->float('reprocessing_efficiency');
-                $table->float('reprocessing_stations_take');
+                $table->bigInteger('position_x');
+                $table->bigInteger('position_y');
+                $table->bigInteger('position_z');
+                $table->unsignedBigInteger('race_id')->nullable();
+                $table->decimal('reprocessing_efficiency');
+                $table->decimal('reprocessing_stations_take');
                 $table->string('services');
-                $table->bigInteger('station_id');
-                $table->bigInteger('system_id');
-                $table->bigInteger('type_id');
+                $table->unsignedBigInteger('station_id');
+                $table->unsignedBigInteger('system_id');
+                $table->unsignedBigInteger('type_id');
                 $table->timestamps();
             });
         }
