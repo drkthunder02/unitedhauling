@@ -31,10 +31,9 @@ class DashboardController extends Controller
         foreach($tempContracts as $con) {
             if($con->status != 'finished') {
 
+                //Find start and end station.  Need to work on how to tell citadels later.
                 $startStation = $lookupHelper->GetStationDetails($con->start_location_id);
                 $endStation = $lookupHelper->GetStationDetails($con->end_location_id);
-
-                dd($con->end_location_id);
 
                 if(isset($startStation->system_id)) {
                     $startSystem = $lookupHelper->GetSolarSystemName($startStation->system_id);
