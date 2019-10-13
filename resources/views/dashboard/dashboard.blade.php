@@ -30,10 +30,10 @@
                 <td>{{ $contract['pickup'] }}</td>
                 <td>{{ $contract['destination'] }}</td>
                 <td>{{ $contract['type'] }}</td>
-                <td>{{ number_format($contract['volume'], 2, ",", ".") }}</td>
+                <td>{{ number_format($contract['volume'], 2, ".", ",") }}</td>
                 <td>{{ $contract['expired'] }}</td>
-                <td>{{ number_format($contract['collateral'], 2, ",", ".") }}</td>
-                <td>{{ number_format($contract['reward'], 2, ",", ".") }}</td>
+                <td>{{ number_format($contract['collateral'], 2, ".", ",") }}</td>
+                <td>{{ number_format($contract['reward'], 2, ".", ",") }}</td>
                 <td>{{ $contract['availability'] }}</td>
             </tr>
             @endforeach
