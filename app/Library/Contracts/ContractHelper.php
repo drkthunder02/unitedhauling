@@ -33,6 +33,9 @@ class ContractHelper {
         $configuration = Configuration::getInstance();
         $configuration->cache = NullCache::class;
 
+        //Get the esi configuration from config files
+        $config = config('esi');
+
         //Get the refresh token from the database
         $token = $esiHelper->GetRefreshToken($config['primary']);
         $this->esi = $esiHelper->SetupEsiAuthentication($token);

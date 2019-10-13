@@ -212,7 +212,6 @@ class LoginController extends Controller
             'character_id' => $eve_user->getId(),
             'expires_in' => $eve_user->expiresIn,
             'access_token' => $eve_user->token,
-            'user_type' => $this->GetRole(null, $eve_user->id),
         ]);
 
         return $user;
@@ -275,7 +274,7 @@ class LoginController extends Controller
         $configuration->cache = NullCache::class;
 
         //Setup the user array
-        $haulers = AllowedLogin::where(['login_type' => 'Haulers'])->pluck('entity_id')->toArray();
+        $haulers = AllowedLogin::where(['login_type' => 'Hauler'])->pluck('entity_id')->toArray();
 
         // Instantiate a new ESI instance
         $esi = new Eseye();
