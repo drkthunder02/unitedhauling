@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+//Internal Library
 use Closure;
-use DB;
+
+//Models
 use App\Models\User\UserPermission;
 
 class RequirePermission

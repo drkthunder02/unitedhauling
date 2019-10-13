@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+//Internal Libraries
 use Closure;
 
+//Models
 use App\Models\User\UserRole;
 
 class RequireRole
