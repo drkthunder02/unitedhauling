@@ -770,9 +770,9 @@ class LookupHelper {
         if(isset($response->owner)) {
             $station->owner = $response->owner;
         }
-        $station->position_x = $response->position->x;
-        $station->position_y = $response->position->y;
-        $station->position_z = $response->position->z;
+        $station->position_x = $response->position['x'];
+        $station->position_y = $response->position['y'];
+        $station->position_z = $response->position['z'];
         if(isset($response->race_id)) {
             $station->race_id = $response->race_id;
         }
