@@ -724,7 +724,7 @@ class LookupHelper {
 
             if(isset($station->type_id)) {
                 //Store the station details for the lookup table
-                $this->StoreStationLookup($station);
+                $this->SaveStation($station);
                 //Return the details of the station
                 return $station;
             } else {
@@ -735,7 +735,7 @@ class LookupHelper {
         }
     }
 
-    private function LookupStation($id = null, $name = null) {
+    public function LookupStation($id = null, $name = null) {
         //if both the id and name are null, then there is nothing to look up
         if($id == null && $name == null) {
             return null;
