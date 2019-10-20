@@ -740,7 +740,7 @@ class LookupHelper {
             $count = StationLookup::where(['station_id' => $id])->count();
 
             if($count > 0) {
-                $station = StationLookup::where(['station_id' => $id])->get();
+                $station = StationLookup::where(['station_id' => $id])->first();
             } else {
                 return null;
             }
@@ -749,7 +749,7 @@ class LookupHelper {
             $count = StationLookup::where(['name' => $name])->count();
 
             if($coutn > 0) {
-                $station = StationLookup::where(['name' => $name])->get();
+                $station = StationLookup::where(['name' => $name])->first();
             } else {
                 return null;
             }

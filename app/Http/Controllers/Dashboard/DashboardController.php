@@ -43,8 +43,6 @@ class DashboardController extends Controller
                 //Find start and end station.  Need to work on how to tell citadels later.
                 $startStation = $lookupHelper->GetStationDetails($con->start_location_id);
                 $endStation = $lookupHelper->GetStationDetails($con->end_location_id);
-                
-                dd($endStation);
 
                 if(isset($startStation->system_id)) {
                     $startSystem = $lookupHelper->GetSolarSystemName($startStation->system_id);
