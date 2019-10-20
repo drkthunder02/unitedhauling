@@ -58,7 +58,7 @@ class DashboardController extends Controller
                
                 //Compile the final array
                 $final = [
-                    'pickup' => $startStation->system_id,
+                    'pickup' => $startSystem,
                     'destination' => $endStation->system_id,
                     'type' => $con->type,
                     'volume' => $con->volume,
