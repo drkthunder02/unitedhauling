@@ -56,10 +56,12 @@ class DashboardController extends Controller
                     $endSystem = 'N/A';
                 }
                
+                dd($endSystem);
+
                 //Compile the final array
                 $final = [
                     'pickup' => $startSystem,
-                    'destination' => $endStation->system_id,
+                    'destination' => $endSystem,
                     'type' => $con->type,
                     'volume' => $con->volume,
                     'expired' => $esiHelper->DecodeDate($con->date_expired),
