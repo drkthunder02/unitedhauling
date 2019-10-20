@@ -55,8 +55,6 @@ class DashboardController extends Controller
                 } else {
                     $endSystem = 'N/A';
                 }
-               
-                dd($endSystem);
 
                 //Compile the final array
                 $final = [
