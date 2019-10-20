@@ -53,8 +53,8 @@ class DashboardController extends Controller
                
                 //Compile the final array
                 $final = [
-                    'pickup' => $startStation,
-                    'destination' => $endStation,
+                    'pickup' => $startStation->system_id,
+                    'destination' => $endStation->system_id,
                     'type' => $con->type,
                     'volume' => $con->volume,
                     'expired' => $esiHelper->DecodeDate($con->date_expired),
