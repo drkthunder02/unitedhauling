@@ -722,16 +722,10 @@ class LookupHelper {
                 return null;
             }
 
-            if(isset($station->type_id)) {
-                //Store the station details for the lookup table
-                $this->SaveStation($station);
-                //Return the details of the station
-                return $station;
-            } else {
-                //If we didn't get any details then return null
-                return null;
-            }
-            
+            //Save the station in the database
+            $this->SaveStation($station);
+
+            return $station;
         }
     }
 
@@ -744,15 +738,18 @@ class LookupHelper {
         //Run through the checks to try to find the station either by id first, then the name
         if($id != null) {
             $count = StationLookup::where(['station_id' => $id])->count();
+
             if($count > 0) {
                 $station = StationLookup::where(['station_id' => $id])->get();
             } else {
                 return null;
             }
+
         } else if( $name != null) {
             $count = StationLookup::where(['name' => $name])->count();
+
             if($coutn > 0) {
-                $station = StationLookup::whre(['name' => $name])->get();
+                $station = StationLookup::where(['name' => $name])->get();
             } else {
                 return null;
             }

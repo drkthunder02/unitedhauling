@@ -10,6 +10,11 @@ use App\Library\Contracts\ContractHelper;
 use App\Library\Lookups\LookupHelper;
 use App\Library\Esi\Esi;
 
+//Models
+use App\Models\Lookups\SolarSystem;
+use App\Models\Lookups\SolarSystemDistance;
+use App\Models\Lookups\StationLookup;
+
 class DashboardController extends Controller
 {
     public function __construct() {
