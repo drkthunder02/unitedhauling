@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\CitadelLookup' => $baseDir . '/app/Models/Lookups/CitadelLookup.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\EsiScopeController' => $baseDir . '/app/Http/Controllers/Auth/EsiScopeController.php',

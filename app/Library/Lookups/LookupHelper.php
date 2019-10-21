@@ -748,7 +748,7 @@ class LookupHelper {
         } else if( $name != null) {
             $count = StationLookup::where(['name' => $name])->count();
 
-            if($coutn > 0) {
+            if($count > 0) {
                 $station = StationLookup::where(['name' => $name])->first();
             } else {
                 return null;
@@ -780,6 +780,73 @@ class LookupHelper {
         $station->system_id = $response->system_id;
         $station->type_id = $response->type_id;
         $station->save();
+    }
+
+    public function GetCitadelDetails($citadelId) {
+        //Check if the citadel is stored in the database
+        $citadel = $this->LookupCitadel($citadelId, null);
+
+        //If the citadel id is null, then we didn't find it, and we run esi
+        //to find the details if possible
+        if($citadel != null) {
+            return $citadel;
+        } else {
+            try {
+                $citadel = $this->esi->invoke('get', '/universe/structures/{structure_id}/', [
+                    'structure_id' => $citadelId,
+                ]);
+            } catch(RequestFailedException $e) {
+                Log::warning("Failed to get citadel details from /universe/structures/{structure_id}/");
+                return null;
+            }
+
+            //Save the citadel in the database
+            $this->SaveCitadel($citadel, $citadelId);
+
+            return $citadel;
+        }
+    }
+
+    public function LookupCitadel($id = null, $name = null) {
+        //If both the id and name are null, then there is nothing to look up
+        if($id == null && $name == null) {
+            return null;
+        }
+
+        //Run through the checks to try to find the station either by id first,
+        //then from the citadel name
+        if($id != null) {
+            $count = CitadelLookup::where(['structure_id' => $id])->count();
+
+            if($count > 0) {
+                $citadel = CitadelLookup::where(['structure_id' => $id])->first();
+            } else {
+                return null;
+            }
+        } else if($name != null) {
+            $count = CitadelLookup::where(['name' => $name])->count();
+
+            if($count > 0) {
+                $citadel = CitadelLookup::where(['name' => $name])->first();
+            } else {
+                return null;
+            }
+        }
+
+        //Return the details of the station if they were found
+        return $citadel;
+    }
+
+    private function SaveCitadel($response, $id) {
+        $citadel = new CitadelLookup;
+        $citadel->structure_id = $id;
+        $citadel->name = $response->name;
+        $citadel->position_x = $response->position->x;
+        $citadel->position_y = $response->position->y;
+        $citadel->position_z = $response->position->z;
+        $citadel->solar_system_id = $response->solar_system_id;
+        $citadel->type_id = $response->type_id;
+        $citadel->save();
     }
 }
 

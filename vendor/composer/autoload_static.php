@@ -486,6 +486,7 @@ class ComposerStaticInit33afb8ba5b252c3933eb137784fa7f04
     );
 
     public static $classMap = array (
+        'App\\CitadelLookup' => __DIR__ . '/../..' . '/app/Models/Lookups/CitadelLookup.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\EsiScopeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/EsiScopeController.php',

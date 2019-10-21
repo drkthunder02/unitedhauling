@@ -39,17 +39,32 @@ class DashboardController extends Controller
         foreach($tempContracts as $con) {
             if($con->status == 'outstanding') {
 
+                //Find the start station or citadel
+                if($con->start_location_id) {
+                    $startStation = $lookupHelper->GetCitadelDetails($con->start_location_id);
+                } else if($con->start_location_id) {
+                    $startStation = $lookupHelper->GetStationDetails($con->start_location_id);
+                } else {
+                    $startSystem = 'N/A';
+                }
 
-                //Find start and end station.  Need to work on how to tell citadels later.
-                $startStation = $lookupHelper->GetStationDetails($con->start_location_id);
-                $endStation = $lookupHelper->GetStationDetails($con->end_location_id);
+                //Find the end station or citadel
+                if($con->end_location_id) {
+                    $endStation = $lookupHelper->GetCitadelDetails($con->end_location_id);
+                } else if($con->end_location_id) {
+                    $endStation = $lookupHelper->GetStationDetails($con->end_location_id);
+                } else {
+                    $endSystem = 'N/A';
+                }
 
+                //Find the system via it's id.
                 if(isset($startStation->system_id)) {
                     $startSystem = $lookupHelper->GetSolarSystemName($startStation->system_id);
                 } else {
                     $startSystem = 'N/A';
                 }
 
+                //Find the system via it's id.
                 if(isset($endStation->system_id)) {
                     $endSystem = $lookupHelper->GetSolarSystemName($endStation->system_id);
                 } else {
