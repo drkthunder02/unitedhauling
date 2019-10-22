@@ -41,7 +41,6 @@ class HaulingHelper {
         }
 
         $length = sizeof($route);
-        $length += 1;
 
         return $length;
     }
