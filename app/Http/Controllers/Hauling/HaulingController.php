@@ -69,7 +69,7 @@ class HaulingController extends Controller
         if($size > 0 && $size <= 8000) {
             $cost = $jumps * 600000;
         } else if($size > 8000 && $size <= 57500) {
-            $cost = $jumps * 750000;
+            $cost = $jumps * 800000;
         } else if($size > 57500 && $size <= 800000) {
             $cost = $jumps * 1000000;
         } else {
