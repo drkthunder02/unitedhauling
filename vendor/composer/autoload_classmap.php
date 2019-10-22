@@ -1026,6 +1026,7 @@ return array(
     'Hamcrest\\Type\\IsString' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
     'Hamcrest\\Util' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+    'HaulingConfigSeeder' => $baseDir . '/database/seeds/HaulingConfigSeeder.php',
     'Highlight\\Autoloader' => $vendorDir . '/scrivo/highlight.php/Highlight/Autoloader.php',
     'Highlight\\Highlighter' => $vendorDir . '/scrivo/highlight.php/Highlight/Highlighter.php',
     'Highlight\\JsonRef' => $vendorDir . '/scrivo/highlight.php/Highlight/JsonRef.php',

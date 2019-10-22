@@ -13,6 +13,7 @@ use App\Library\Hauling\HaulingHelper;
 
 //Models
 use App\Models\Lookups\SolarSystem;
+use App\Models\Config\HaulingConfig;
 
 class HaulingController extends Controller
 {
@@ -40,7 +41,7 @@ class HaulingController extends Controller
             'pickup' => 'required',
             'destination' => 'required',
             'collateral' => 'required',
-            'size' => 'required',
+            'size' => 'required|max:800000',
         ]);
 
         //Declare the class helper
@@ -48,11 +49,25 @@ class HaulingController extends Controller
 
         //Declare some variables we will need
         $size = $request->size;
-        $collateral = $request->collateral;
         $time = '1 week';
         $duration = '3 days';
         $pickup = $request->pickup;
         $destination = $request->destination;
+
+        //Calculate the collateral
+        if(preg_match('(m|M|b|B)', $request->collateral) === 1) {
+            if(preg_match('(m|M)', $request->collateral) === 1) {
+                $collateral = $request->collateral * 1000000.00;
+            } else if(preg_match('(b|B)', $request->collaterial) === 1) {
+                $collateral = $request->collateral * 1000000000.00;
+            }
+        } else {
+            $collateral = $request->collateral;
+        }
+
+        //Get some configuration data for the haul
+        $hConfig = HaulingConfig::all();
+        
 
         //Determine if both systems are in high sec
         $system1 = SolarSystem::where(['name' => $pickup])->first();
@@ -65,15 +80,11 @@ class HaulingController extends Controller
         //Calculate the jumps needed
         $jumps = $hHelper->JumpsBetweenSystems($pickup, $destination);
 
-        //Calculate the cost based on jumps multiplied by the fee.
-        if($size > 0 && $size <= 8000) {
-            $cost = $jumps * 600000;
-        } else if($size > 8000 && $size <= 57500) {
-            $cost = $jumps * 800000;
-        } else if($size > 57500 && $size <= 800000) {
-            $cost = $jumps * 1000000;
-        } else {
-            return redirect('/')->with('error', 'Size cannot be greater than 800k m3.');
+        //Calculte the cost based on jumps multiplied by the fee.
+        foreach($hConfig as $config) {
+            if($size > $config->min_load_size && $size <= $config->max_load_size) {
+                $cost = $jumps * $hConfig->price_per_jump;
+            }
         }
 
         return  view('hauling.display.results')->with('jumps', $jumps)
