@@ -33,7 +33,7 @@ class HaulingConfigSeeder extends Seeder
             ]);
         }
 
-        if(HaulingConfig::where(['load_size' => 'large'])->count == 0) {
+        if(HaulingConfig::where(['load_size' => 'large'])->count() == 0) {
             HaulingConfig::insert([
                 'load_size' => 'large',
                 'min_load_size' => 57500,
