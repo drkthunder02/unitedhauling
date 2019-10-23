@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         $this->call(SolarSystemSeeder::class);
+        $this->call(HaulingConfigSeeder::class);
     }
 }
