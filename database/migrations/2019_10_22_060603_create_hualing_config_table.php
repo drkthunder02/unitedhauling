@@ -19,7 +19,7 @@ class CreateHualingConfigTable extends Migration
                 $table->string('load_size')->unique();
                 $table->unsignedBigInteger('min_load_size');
                 $table->unsignedBigInteger('max_load_size');
-                $table->decimal('price_per_jump', 12, 2);
+                $table->unsignedDecimal('price_per_jump', 12, 2);
                 $table->timestamps();
             });
         }
