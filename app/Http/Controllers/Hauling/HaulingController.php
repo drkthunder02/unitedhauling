@@ -55,14 +55,11 @@ class HaulingController extends Controller
         $destination = $request->destination;
         $collateral = null;
 
-        $test = preg_match('(m|M|b|B)', $request->collateral);
-        dd($test);
-
         //Calculate the collateral
         if(preg_match('(m|M|b|B)', $request->collateral) === 1) {
             if(preg_match('(m|M)', $request->collateral) === 1) {
                 $collateral = $request->collateral * 1000000.00;
-            } else if(preg_match('(b|B)', $request->collaterial) === 1) {
+            } else if(preg_match('(b|B)', $request->collateral) === 1) {
                 $collateral = $request->collateral * 1000000000.00;
             }
         } else {
