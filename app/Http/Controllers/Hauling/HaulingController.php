@@ -83,7 +83,7 @@ class HaulingController extends Controller
         //Calculte the cost based on jumps multiplied by the fee.
         foreach($hConfig as $config) {
             if($size > $config->min_load_size && $size <= $config->max_load_size) {
-                $cost = $jumps * $hConfig->price_per_jump;
+                $cost = $jumps * $config->price_per_jump;
             }
         }
 
