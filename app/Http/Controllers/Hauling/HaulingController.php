@@ -53,6 +53,7 @@ class HaulingController extends Controller
         $duration = '3 days';
         $pickup = $request->pickup;
         $destination = $request->destination;
+        $collateral = null;
 
         //Calculate the collateral
         if(preg_match('(m|M|b|B)', $request->collateral) === 1) {
