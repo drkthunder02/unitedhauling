@@ -62,8 +62,7 @@ class HaulingController extends Controller
                 $collateral = str_replace('M', '', $collateral);
                 $collateral = $request->collateral * 1000000.00;
             } else if(preg_match('(b|B)', $request->collateral) === 1) {
-                $collateral = str_replace('b', '', $collateral);
-                $collateral = str_replace('B', '', $collateral);
+                $collateral = preg_replace('(b|B', '', $collateral);
                 dd($collateral);
                 $collateral = $request->collateral * 1000000000.00;
             }
