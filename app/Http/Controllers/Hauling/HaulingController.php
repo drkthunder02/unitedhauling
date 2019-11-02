@@ -108,6 +108,8 @@ class HaulingController extends Controller
      * Controller function to display quotes for pricing tables
      */
     public function displayQuotes() {
-        return view('hauling.display.quotes');
+        $loads = HaulingConfig::all();
+
+        return view('hauling.display.quotes')->with('loads', $loads);
     }
 }
