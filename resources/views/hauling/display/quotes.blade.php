@@ -24,6 +24,10 @@
                     @endforeach
                 </tbody>
             </table>
+            <br>
+            <div class="container">
+                <h3>Max Collateral should be no more than 2b ISK</h3>
+            </div>
         </div>
     </div>
 </div>
