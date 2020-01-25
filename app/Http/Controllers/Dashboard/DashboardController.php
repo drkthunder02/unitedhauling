@@ -39,22 +39,22 @@ class DashboardController extends Controller
         foreach($tempContracts as $con) {
             if($con->status == 'outstanding') {
 
-                //Find the start station or citadel
-                if($con->start_location_id) {
-                    $startStation = $lookupHelper->GetCitadelDetails($con->start_location_id);
-                } else if($con->start_location_id) {
+                //Find the details on the starting location
+                if($con->start_location_id < 100000000) {
                     $startStation = $lookupHelper->GetStationDetails($con->start_location_id);
+                } else if($con->start_location_id >= 100000000) {
+                    $startStation = $lookupHelper->GetCitadelDetails($con->start_location_id);
                 } else {
-                    $startSystem = 'N/A';
+                    $startStation = 'N/A';
                 }
 
-                //Find the end station or citadel
-                if($con->end_location_id) {
-                    $endStation = $lookupHelper->GetCitadelDetails($con->end_location_id);
-                } else if($con->end_location_id) {
+                //Find the details on the ending location
+                if($con->end_location_id < 100000000) {
                     $endStation = $lookupHelper->GetStationDetails($con->end_location_id);
+                } else if($con->start_location_id >= 100000000) {
+                    $endtStation = $lookupHelper->GetCitadelDetails($con->end_location_id);
                 } else {
-                    $endSystem = 'N/A';
+                    $endStation = 'N/A';
                 }
 
                 //Find the system via it's id.
