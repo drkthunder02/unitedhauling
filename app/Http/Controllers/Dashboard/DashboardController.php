@@ -51,7 +51,7 @@ class DashboardController extends Controller
                 //Find the details on the ending location
                 if($con->end_location_id < 100000000) {
                     $endStation = $lookupHelper->GetStationDetails($con->end_location_id);
-                } else if($con->start_location_id >= 100000000) {
+                } else if($con->end_location_id >= 100000000) {
                     $endStation = $lookupHelper->GetCitadelDetails($con->end_location_id);
                 } else {
                     $endStation = 'N/A';
@@ -65,8 +65,6 @@ class DashboardController extends Controller
                 } else {
                     $startSystem = 'N/A';
                 }
-
-                dd($endStation);
 
                 //Find the system via it's id.
                 if(isset($endStation->system_id)) {
