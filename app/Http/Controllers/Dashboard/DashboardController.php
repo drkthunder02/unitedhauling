@@ -66,7 +66,7 @@ class DashboardController extends Controller
                     $startSystem = 'N/A';
                 }
 
-                dd($endStation);
+                dd($con);
 
                 //Find the system via it's id.
                 if(isset($endStation->system_id)) {
