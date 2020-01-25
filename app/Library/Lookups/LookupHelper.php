@@ -25,10 +25,20 @@ use App\Models\Lookups\CitadelLookup;
 class LookupHelper {
     //Variables
     private $esi;
+    private $authEsi;
+    private $esiHelper;
 
     //Construct
     public function __construct() {
         $this->esi = new Eseye();
+
+        $this->esiHelper = new Esi;
+        if($esiHelper->HaveEsiScope('96543179', 'esi-universe.read_structures.v1')) {
+            $token = $esiHelper->GetRefreshToken('96543179');
+            $this->authEsi = $esiHelper->SetupEsiAuthentication($token);
+        } else {
+            $this->authEsi = null;
+        }
     }
     
     public function GetCharacterInfo($charId) {
@@ -793,7 +803,7 @@ class LookupHelper {
             return $citadel;
         } else {
             try {
-                $citadel = $this->esi->invoke('get', '/universe/structures/{structure_id}/', [
+                $citadel = $this->authEsi->invoke('get', '/universe/structures/{structure_id}/', [
                     'structure_id' => $citadelId,
                 ]);
             } catch(RequestFailedException $e) {
