@@ -60,6 +60,8 @@ class DashboardController extends Controller
                 //Find the system via it's id.
                 if(isset($startStation->system_id)) {
                     $startSystem = $lookupHelper->GetSolarSystemName($startStation->system_id);
+                } else if(isset($startStation->solar_system_id)) {
+                    $startSystem = $lookupHelper->GetSolarSystemName($startStation->solar_system_id);
                 } else {
                     $startSystem = 'N/A';
                 }
@@ -67,6 +69,8 @@ class DashboardController extends Controller
                 //Find the system via it's id.
                 if(isset($endStation->system_id)) {
                     $endSystem = $lookupHelper->GetSolarSystemName($endStation->system_id);
+                } else if(isset($endStation->solar_system_id)) {
+                    $endSystem = $lookupHelper->GetSolarSystemName($endStation->solar_system_id);
                 } else {
                     $endSystem = 'N/A';
                 }
