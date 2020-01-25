@@ -20,6 +20,7 @@ use App\Models\Lookups\CorporationLookup;
 use App\Models\Lookups\AllianceLookup;
 use App\Models\Lookups\SolarSystem;
 use App\Models\Lookups\StationLookup;
+use App\Models\Lookups\CitadelLookup;
 
 class LookupHelper {
     //Variables
