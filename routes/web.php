@@ -25,13 +25,8 @@ Route::get('/login', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('/callback', 'Auth\LoginController@handleProviderCallback')->name('callback');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::group(['middleware' => ['auth']], function(){
-    /**
-     * Unsecure Pages
-     */
-    Route::get('/', 'Hauling\HaulingController@displayForm')->name('/');
-    Route::post('/', 'Hauling\HaulingController@displayFormResults');
-    Route::get('/display/quotes', 'Hauling\HaulingController@displayQuotes')->name('quotes');
+
+//Route::group(['middleware' => ['auth']], function(){
 
     /**
      * Dashboard Controller Display pages
@@ -44,4 +39,5 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/scopes/select', 'Auth\EsiScopeController@displayScopes');
     Route::post('redirectToProvider', 'Auth\EsiScopeController@redirectToProvider');
     
-});
+//});
+
