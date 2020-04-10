@@ -20,14 +20,25 @@ use App\Models\Lookups\CorporationLookup;
 use App\Models\Lookups\AllianceLookup;
 use App\Models\Lookups\SolarSystem;
 use App\Models\Lookups\StationLookup;
+use App\Models\Lookups\CitadelLookup;
 
 class LookupHelper {
     //Variables
     private $esi;
+    private $authEsi;
+    private $esiHelper;
 
     //Construct
     public function __construct() {
         $this->esi = new Eseye();
+
+        $this->esiHelper = new Esi;
+        if($this->esiHelper->HaveEsiScope('96543179', 'esi-universe.read_structures.v1')) {
+            $token = $this->esiHelper->GetRefreshToken('96543179');
+            $this->authEsi = $this->esiHelper->SetupEsiAuthentication($token);
+        } else {
+            $this->authEsi = null;
+        }
     }
     
     public function GetCharacterInfo($charId) {
@@ -791,19 +802,23 @@ class LookupHelper {
         if($citadel != null) {
             return $citadel;
         } else {
-            try {
-                $citadel = $this->esi->invoke('get', '/universe/structures/{structure_id}/', [
-                    'structure_id' => $citadelId,
-                ]);
-            } catch(RequestFailedException $e) {
-                Log::warning("Failed to get citadel details from /universe/structures/{structure_id}/");
+            if($this->authEsi != null) {
+                try {
+                    $citadel = $this->authEsi->invoke('get', '/universe/structures/{structure_id}/', [
+                        'structure_id' => $citadelId,
+                    ]);
+                } catch(RequestFailedException $e) {
+                    Log::warning("Failed to get citadel details from /universe/structures/{structure_id}/");
+                    return null;
+                }
+    
+                //Save the citadel in the database
+                $this->SaveCitadel($citadel, $citadelId);
+    
+                return $citadel;
+            } else {
                 return null;
-            }
-
-            //Save the citadel in the database
-            $this->SaveCitadel($citadel, $citadelId);
-
-            return $citadel;
+            }            
         }
     }
 

@@ -3,6 +3,7 @@
 <?php
     $publicData = false;
     $corpContracts = false;
+    $structures = false;
 ?>
 <div class="container">
     <h2>Select Scopes for ESI</h2>
@@ -26,6 +27,15 @@
                 <?php $corpContracts = true; ?>
             @endif
         @endforeach
+        @foreach($scopes as $scope)
+            @if($scope->scope == 'esi-universe.read_structures.v1')
+                <div class="form-group col-md-6">
+                    {{ Form::label('scopes[]', 'Read Structures') }}
+                    {{ Form::checkbox('scopes[]', 'esi-universe.read_structures.v1') }}
+                </div>
+                <?php $structures = true; ?>
+            @endif
+        @endforeach
 
         @if($publicData == false)
         <div class="form-group col-md-6">
@@ -37,6 +47,12 @@
         <div class="form-group col-md-6">
             {{ Form::label('scopes[]', 'Corporate Contracts') }}
             {{ Form::checkbox('scopes[]', 'esi-contracts.read_corporation_contracts.v1') }}
+        </div>
+        @endif
+        @if($structures == false)
+        <div class="form-group col-md-6">
+            {{ Form::label('scopes[]', 'Read Structures') }}
+            {{ Form::checkbox('scopes[]', 'esi-universe.read_structures.v1') }}
         </div>
         @endif
         {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
