@@ -25,10 +25,6 @@ class HaulingController extends Controller
      * Controller function to display form
      */
     public function displayForm() {
-        if(Auth::check()) {
-            return redirect('/dashboard');
-        }
-
         return view('hauling.display.form');
     }
 
