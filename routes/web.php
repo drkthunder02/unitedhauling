@@ -18,12 +18,11 @@ Route::get('/', 'Hauling\HaulingController@displayForm')->name('/');
 Route::post('/', 'Hauling\HaulingController@displayFormResults');
 Route::get('/display/quotes', 'Hauling\HaulingController@displayQuotes')->name('quotes');
 
-Route::group(['middleware' => ['auth']], function(){
+//Route::group(['middleware' => ['auth']], function(){
     /**
      * Dashboard Controller Display pages
      */
     Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('/dashboard');
-    //Route::get('/profile', 'Dashboard\DashboardController@profile');
 
     /**
      * Scopes Controller display pages
@@ -31,7 +30,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/scopes/select', 'Auth\EsiScopeController@displayScopes');
     Route::post('redirectToProvider', 'Auth\EsiScopeController@redirectToProvider');
     
-});
+//});
 /*
 Route::group(['middleware' => ['guest']], function() {
 
