@@ -26,7 +26,7 @@ Route::get('/callback', 'Auth\LoginController@handleProviderCallback')->name('ca
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 
-//Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth']], function(){
 
     /**
      * Dashboard Controller Display pages
@@ -39,5 +39,5 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('/scopes/select', 'Auth\EsiScopeController@displayScopes');
     Route::post('redirectToProvider', 'Auth\EsiScopeController@redirectToProvider');
     
-//});
+});
 
