@@ -14,7 +14,7 @@
         </ul>
         <ul class="navbar-nav m1-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/profile">Profile</a>
+                <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Logout</a>
