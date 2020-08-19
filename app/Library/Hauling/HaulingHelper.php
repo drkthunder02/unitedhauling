@@ -44,10 +44,12 @@ class HaulingHelper {
             //Convert $avoids into a string fro the query string for ESI
             foreach($avoids as $avoid) {
                 if($firstTime == true) {
-                    $strAvoid = $avoid;
+                    $temp = SolarSystem::where(['name' => $avoid])->first();
+                    $strAvoid = $temp->solar_system_id;
                     $firstTime = false;
                 } else {
-                    $strAvoid = $strAvoid . ',' . $avoid;
+                    $temp = SolarSystem::where(['name' => $avoid])->first();
+                    $strAvoid = $strAvoid . ',' . $temp->solar_system_id;
                 }
             }
 
