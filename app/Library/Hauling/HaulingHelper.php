@@ -65,7 +65,8 @@ class HaulingHelper {
                 return -1;
             }
 
-            dd($route);
+            var_dump($route);
+            dd();
 
             $length = sizeof($route);
 
