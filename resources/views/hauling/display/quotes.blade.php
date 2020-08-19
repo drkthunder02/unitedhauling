@@ -29,6 +29,7 @@
             <br>
             <div class="container">
                 <h3>Max Collateral should be no more than 3b ISK</h3>
+                <h3>Formula: (Jumps * Price Per Jump) + (Collateral * Collateral Percent)
             </div>
         </div>
     </div>
