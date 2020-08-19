@@ -54,7 +54,7 @@ class HaulingHelper {
             try {
                 $route = $this->esi->setQueryString([
                     'flag' => 'secure',
-                    'avoids' => $strAvoid,
+                    'avoid' => $strAvoid,
                 ])->invoke('get', '/route/{origin}/{destination}/', [
                     'origin' => $system1->solar_system_id,
                     'destination' => $system2->solar_system_id,
@@ -62,6 +62,8 @@ class HaulingHelper {
             } catch(RequestFailedException $e) {
                 return -1;
             }
+
+            dd($route);
 
             $length = sizeof($route);
 
