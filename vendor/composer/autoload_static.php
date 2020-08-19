@@ -486,7 +486,6 @@ class ComposerStaticInit33afb8ba5b252c3933eb137784fa7f04
     );
 
     public static $classMap = array (
-        'App\\CitadelLookup' => __DIR__ . '/../..' . '/app/Models/Lookups/CitadelLookup.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\EsiScopeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/EsiScopeController.php',
@@ -510,11 +509,13 @@ class ComposerStaticInit33afb8ba5b252c3933eb137784fa7f04
         'App\\Library\\Hauling\\HaulingHelper' => __DIR__ . '/../..' . '/app/Library/Hauling/HaulingHelper.php',
         'App\\Library\\Lookups\\LookupHelper' => __DIR__ . '/../..' . '/app/Library/Lookups/LookupHelper.php',
         'App\\Models\\Admin\\AllowedLogin' => __DIR__ . '/../..' . '/app/Models/Admin/AllowedLogin.php',
+        'App\\Models\\Config\\HaulingConfig' => __DIR__ . '/../..' . '/app/Models/Config/HaulingConfig.php',
         'App\\Models\\Esi\\EsiScope' => __DIR__ . '/../..' . '/app/Models/Esi/EsiScope.php',
         'App\\Models\\Esi\\EsiToken' => __DIR__ . '/../..' . '/app/Models/Esi/EsiToken.php',
         'App\\Models\\Jobs\\JobSendEveMail' => __DIR__ . '/../..' . '/app/Models/Jobs/JobSendEveMail.php',
         'App\\Models\\Lookups\\AllianceLookup' => __DIR__ . '/../..' . '/app/Models/Lookups/AllianceLookup.php',
         'App\\Models\\Lookups\\CharacterLookup' => __DIR__ . '/../..' . '/app/Models/Lookups/CharacterLookup.php',
+        'App\\Models\\Lookups\\CitadelLookup' => __DIR__ . '/../..' . '/app/Models/Lookups/CitadelLookup.php',
         'App\\Models\\Lookups\\CorporationLookup' => __DIR__ . '/../..' . '/app/Models/Lookups/CorporationLookup.php',
         'App\\Models\\Lookups\\SolarSystem' => __DIR__ . '/../..' . '/app/Models/Lookups/SolarSystem.php',
         'App\\Models\\Lookups\\SolarSystemDistance' => __DIR__ . '/../..' . '/app/Models/Lookups/SolarSystemDistance.php',

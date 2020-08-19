@@ -14,6 +14,7 @@ use App\Library\Hauling\HaulingHelper;
 //Models
 use App\Models\Lookups\SolarSystem;
 use App\Models\Config\HaulingConfig;
+use App\Models\Config\AvoidanceList;
 
 class HaulingController extends Controller
 {
@@ -50,6 +51,7 @@ class HaulingController extends Controller
         $pickup = $request->pickup;
         $destination = $request->destination;
         $collateral = null;
+        $arrAvoidance = array();
 
         //Calculate the collateral
         if(preg_match('(m|M|b|B)', $request->collateral) === 1) {
@@ -80,8 +82,15 @@ class HaulingController extends Controller
             return redirect('/')->with('error', 'Both systems must be in high sec.');
         }
 
+        //If we have avoidance systems, build an array, then pass it to the helper function
+        $avoidances = AvoidanceList::all();
+
+        foreach($avoidances as $avoidance) {
+            array_push($arrAvoidance, $avoidance->solar_system);
+        }
+
         //Calculate the jumps needed
-        $jumps = $hHelper->JumpsBetweenSystems($pickup, $destination);
+        $jumps = $hHelper->JumpsBetweenSystems($pickup, $destination, $arrAvoidance);
 
         //Calculte the cost based on jumps multiplied by the fee.
         foreach($hConfig as $config) {

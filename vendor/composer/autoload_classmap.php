@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\CitadelLookup' => $baseDir . '/app/Models/Lookups/CitadelLookup.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\EsiScopeController' => $baseDir . '/app/Http/Controllers/Auth/EsiScopeController.php',
@@ -30,11 +29,13 @@ return array(
     'App\\Library\\Hauling\\HaulingHelper' => $baseDir . '/app/Library/Hauling/HaulingHelper.php',
     'App\\Library\\Lookups\\LookupHelper' => $baseDir . '/app/Library/Lookups/LookupHelper.php',
     'App\\Models\\Admin\\AllowedLogin' => $baseDir . '/app/Models/Admin/AllowedLogin.php',
+    'App\\Models\\Config\\HaulingConfig' => $baseDir . '/app/Models/Config/HaulingConfig.php',
     'App\\Models\\Esi\\EsiScope' => $baseDir . '/app/Models/Esi/EsiScope.php',
     'App\\Models\\Esi\\EsiToken' => $baseDir . '/app/Models/Esi/EsiToken.php',
     'App\\Models\\Jobs\\JobSendEveMail' => $baseDir . '/app/Models/Jobs/JobSendEveMail.php',
     'App\\Models\\Lookups\\AllianceLookup' => $baseDir . '/app/Models/Lookups/AllianceLookup.php',
     'App\\Models\\Lookups\\CharacterLookup' => $baseDir . '/app/Models/Lookups/CharacterLookup.php',
+    'App\\Models\\Lookups\\CitadelLookup' => $baseDir . '/app/Models/Lookups/CitadelLookup.php',
     'App\\Models\\Lookups\\CorporationLookup' => $baseDir . '/app/Models/Lookups/CorporationLookup.php',
     'App\\Models\\Lookups\\SolarSystem' => $baseDir . '/app/Models/Lookups/SolarSystem.php',
     'App\\Models\\Lookups\\SolarSystemDistance' => $baseDir . '/app/Models/Lookups/SolarSystemDistance.php',
