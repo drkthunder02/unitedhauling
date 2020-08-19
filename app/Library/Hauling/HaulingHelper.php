@@ -37,21 +37,24 @@ class HaulingHelper {
         //Get the systems from the database
         $system1 = SolarSystem::where(['name' => $name1])->first();
         $system2 = SolarSystem::where(['name' => $name2])->first();
-        $arrAvoid = array();
+        $firstTime = true;
 
         //If avoids does not equal null, then cycle through them and build an array of avoid list
         if($avoids != null) {
-            //Convert $avoids into an array of numbers
+            //Convert $avoids into a string fro the query string for ESI
             foreach($avoids as $avoid) {
-                $system = SolarSystem::where(['name' => $avoid])->first();
-
-                array_push($arrAvoid, $system->solar_system_id);
+                if($firstTime == true) {
+                    $strAvoid = $avoid;
+                    $firstTime = false;
+                } else {
+                    $strAvoid = $strAvoid . ',' . $avoid;
+                }
             }
 
             try {
                 $route = $this->esi->setQueryString([
                     'flag' => 'secure',
-                    'avoids' => $arrAvoid,
+                    'avoids' => $strAvoid,
                 ])->invoke('get', '/route/{origin}/{destination}/', [
                     'origin' => $system1->solar_system_id,
                     'destination' => $system2->solar_system_id,
