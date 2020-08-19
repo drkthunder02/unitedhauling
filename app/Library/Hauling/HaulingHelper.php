@@ -65,9 +65,7 @@ class HaulingHelper {
                 return -1;
             }
 
-            var_dump($route);
-            dd();
-
+            //Set the length of the route
             $length = sizeof($route);
 
         //If no avoids, then continue as normal
